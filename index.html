@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Analytics - Dashboard</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --sidebar-bg: #111827;
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-main: #1F2937;
+            --text-muted: #6B7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+        body { display: flex; min-height: 100vh; background-color: var(--bg-color); color: var(--text-main); }
+
+        /* Sidebar */
+        .sidebar { width: 250px; background-color: var(--sidebar-bg); color: white; padding: 2rem; }
+        .sidebar h2 { margin-bottom: 2rem; font-size: 1.5rem; letter-spacing: 1px; }
+        .nav-item { padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .nav-item.active { background-color: var(--primary); }
+        .nav-item:hover:not(.active) { background-color: #374151; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 2rem 3rem; display: flex; flex-direction: column; gap: 2rem; }
+
+        /* Header */
+        header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #E5E7EB; }
+        .header-actions { display: flex; align-items: center; gap: 1.5rem; }
+        .btn-primary { background-color: var(--primary); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+        .btn-primary:hover { opacity: 0.9; }
+        
+        /* Dynamic Elements */
+        .dynamic-data { font-size: 0.875rem; color: var(--text-muted); display: flex; gap: 1rem; }
+
+        /* Metric Cards */
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .card { background-color: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .card h3 { color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .card .value { font-size: 2rem; font-weight: 700; color: var(--text-main); }
+        .card .trend { color: #10B981; font-size: 0.875rem; font-weight: 600; margin-top: 0.5rem; }
+
+        /* Data Table */
+        .table-container { background-color: var(--card-bg); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th { text-align: left; padding: 1rem; border-bottom: 2px solid #E5E7EB; color: var(--text-muted); font-weight: 600; }
+        td { padding: 1rem; border-bottom: 1px solid #E5E7EB; color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>Aura.</h2>
+        <div class="nav-item active">Overview</div>
+        <div class="nav-item">Analytics</div>
+        <div class="nav-item">Reports</div>
+        <div class="nav-item">Settings</div>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <div>
+                <h1>Dashboard Overview</h1>
+                <p style="color: var(--text-muted); margin-top: 0.25rem;">Welcome back, Admin.</p>
+            </div>
+            <div class="header-actions">
+                <div class="dynamic-data">
+                    <span id="live-time">00:00:00</span>
+                    <span>|</span>
+                    <span id="session-id">Session: Loading...</span>
+                </div>
+                <button class="btn-primary">Generate Report</button>
+            </div>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <div class="value">$124,500</div>
+                <div class="trend">↑ +14.5% vs last month</div>
+            </div>
+            <div class="card">
+                <h3>Active Users</h3>
+                <div class="value">8,234</div>
+                <div class="trend">↑ +5.2% vs last month</div>
+            </div>
+            <div class="card">
+                <h3>Conversion Rate</h3>
+                <div class="value">3.8%</div>
+                <div class="trend" style="color: #EF4444;">↓ -0.4% vs last month</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h3>Recent Transactions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TXN-8923</td>
+                        <td>sarah.j@example.com</td>
+                        <td>$250.00</td>
+                        <td><span style="color: #10B981; font-weight: 600;">Completed</span></td>
+                    </tr>
+                    <tr>
+                        <td>TXN-8924</td>
+                        <td>m.scott@example.com</td>
+                        <td>$120.50</td>
+                        <td><span style="color: #10B981; font-weight: 600;">Completed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Simulate dynamic content that your AI must learn to ignore
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('live-time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Generate a random session ID on every load
+        document.getElementById('session-id').textContent = 'Session: ' + Math.random().toString(36).substring(2, 10).toUpperCase();
+    </script>
+</body>
+</html>
