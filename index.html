@@ -31,15 +31,19 @@
         /* Header */
         header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #E5E7EB; }
         .header-actions { display: flex; align-items: center; gap: 1.5rem; }
-        .btn-primary { background-color: var(--primary); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+        
+        /* REGRESSION 1: Severe Contrast Issue */
+        .btn-primary { background-color: #D1D5DB; color: #FFFFFF; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
         .btn-primary:hover { opacity: 0.9; }
         
-        /* Dynamic Elements */
         .dynamic-data { font-size: 0.875rem; color: var(--text-muted); display: flex; gap: 1rem; }
 
         /* Metric Cards */
         .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .card { background-color: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        
+        /* REGRESSION 2: Spacing crushed */
+        .card { background-color: var(--card-bg); padding: 0.25rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        
         .card h3 { color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; margin-bottom: 0.5rem; }
         .card .value { font-size: 2rem; font-weight: 700; color: var(--text-main); }
         .card .trend { color: #10B981; font-size: 0.875rem; font-weight: 600; margin-top: 0.5rem; }
@@ -47,8 +51,10 @@
         /* Data Table */
         .table-container { background-color: var(--card-bg); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        th { text-align: left; padding: 1rem; border-bottom: 2px solid #E5E7EB; color: var(--text-muted); font-weight: 600; }
-        td { padding: 1rem; border-bottom: 1px solid #E5E7EB; color: var(--text-main); }
+        
+        /* REGRESSION 3: Bad Alignment */
+        th { text-align: center; padding: 1rem; border-bottom: 2px solid #E5E7EB; color: var(--text-muted); font-weight: 600; }
+        td { padding: 1rem; border-bottom: 1px solid #E5E7EB; color: var(--text-main); text-align: left; }
     </style>
 </head>
 <body>
